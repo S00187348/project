@@ -1,0 +1,28 @@
+<div class='container'>
+  <h1>Comic finder</h1>
+  <form>
+    <div class="form-group">
+      <input type='text' name='comic-name' class="form-control" #comicName placeholder='enter Comic name' />
+    </div>
+    <button (click)="getComicDetails(comicName.value)" type="submit" class='btn btn-primary'>Get Comic Details</button>
+  </form>
+
+  <div class="row bg-light mt-4 p-4" *ngIf="comicData">
+    <div class="col-sm-4">
+      <div>
+        <h3>{{ comicData.Error }}</h3>
+      </div>
+      <div *ngIf="comicData.Title">
+        <img src="{{ comicData.Poster }}">
+      </div>
+    </div>
+
+    <div class="col-sm-8">
+      <div *ngIf="comicData.Title">
+        <h1>{{ comicData.Title }}</h1>
+        <h2> writor by : {{ comicData.Writor }}</h2>
+      </div>
+    </div>
+  </div>
+
+</div>
