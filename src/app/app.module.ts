@@ -12,6 +12,7 @@ import {OmdbApiService} from './services/omdb-api.service';
   imports: [
     BrowserModule,
     HttpClientModule,
+    OmdbApiService
   ],
   providers: [],
   bootstrap: [AppComponent]
