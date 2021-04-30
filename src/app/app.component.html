@@ -5,6 +5,7 @@
       <input type='text' name='comic-name' class="form-control" #comicName placeholder='enter Comic name' />
     </div>
     <button (click)="getComicDetails(comicName.value)" type="submit" class='btn btn-primary'>Get Comic Details</button>
+    
   </form>
 
   <div class="row bg-light mt-4 p-4" *ngIf="comicData">
@@ -21,6 +22,7 @@
       <div *ngIf="comicData.Title">
         <h1>{{ comicData.Title }}</h1>
         <h2> writor by : {{ comicData.Writor }}</h2>
+        <h2> year : {{ comicData.Year }}</h2>
       </div>
     </div>
   </div>

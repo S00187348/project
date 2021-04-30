@@ -9,11 +9,11 @@ import {IOMDBResponse} from '../omdbresponse';
 })
 export class OmdbApiService {
 
-  private _siteURL="https://www.omdbapi.com/";
-  private _key='?apikey=xxxxxxxx&t=';
+  private _siteURL="https://readcomicsonline.ru/";
+  //private _key='?apikey=ffa227a9';
   constructor(private _http:HttpClient){ }
   GetComicData(comicName): Observable<IOMDBResponse>{
-    return this._http.get<IOMDBResponse>(this._siteURL + this._key + comicName)
+    return this._http.get<IOMDBResponse>(this._siteURL + comicName)
     .pipe(
       tap(data => console.log('Comicdata/error' + JSON.stringify(data))
       ),

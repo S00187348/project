@@ -11,6 +11,7 @@ export class AppComponent {
   Title(Title: any) {
     throw new Error('Method not implemented.');
   }
+  //result;
   comicData:IOMDBResponse;
   errorMessage:any;
 
@@ -21,6 +22,7 @@ export class AppComponent {
      comicData => {
        this.comicData=comicData;
        console.log('writor name:' + this.comicData.Writor);
+       console.log('year:' + this.comicData.Year);
      },
      error => this.errorMessage =<any>error
    );
