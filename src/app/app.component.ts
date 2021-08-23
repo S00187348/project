@@ -1,33 +1,53 @@
 import { Component } from '@angular/core';
-import {OmdbApiService} from './services/omdb-api.service';
-import {IOMDBResponse} from './omdbresponse';
+import {MarvelService} from './services/marvel.service';
+import {IOMDBResponse} from './services/omdbresponse';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [OmdbApiService]
+  providers: [MarvelService]
 })
+
 export class AppComponent {
-  Title(Title: any) {
-    throw new Error('Method not implemented.');
-  }
+  title = 'marvelApp';
+
+  // public listHeroes = [];
+  // public offset = '0';
+  // public limit = '100';
   //result;
   comicData:IOMDBResponse;
   errorMessage:any;
 
-  constructor(private _omdbSerice:OmdbApiService){
-}
- getComicDetails(comicName:string) : boolean{
-   this._omdbSerice.GetComicData(comicName).subscribe(
-     comicData => {
-       this.comicData=comicData;
-       console.log('writor name:' + this.comicData.Writor);
-       console.log('year:' + this.comicData.Year);
-     },
-     error => this.errorMessage =<any>error
-   );
-   return false;
- }
+  constructor(
+    private ComicData: MarvelService
+) {}
 
+// ngOnInit(): void {
+    
+//   this.heroeS.consultarPersonajesMarvel(this.offset, this.limit).subscribe(res => {
+//     console.log('Request heroes', res);
+//     this.listHeroes = res.data.results;
+//   })
+// }
 
+getComicDetails(comicName:string): void {
+    
+    this.ComicData.consultarPersonajesMarvel(this.offset, this.limit).subscribe(
+    
+      comicData => {
+      this.comicData=comicData;
+      console.log('writor name:' + this.comicData.Writor);
+      console.log('year:' + this.comicData.Year);
+    },
+    error => this.errorMessage =<any>error
+  );
+  }
+  offset(offset: any, limit: any) {
+    throw new Error('Method not implemented.');
+  }
+  limit(offset: any, limit: any) {
+    throw new Error('Method not implemented.');
+  }
+ 
+  
 }
