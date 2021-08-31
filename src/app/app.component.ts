@@ -22,7 +22,7 @@ export class AppComponent {
   constructor( private _ComicData: MarvelService ) {}
 
 getComicDetails( ComicData:string) :  boolean{
-    this._ComicData.GetMovieData(ComicData).subscribe(
+    this._ComicData.consultarPersonajesMarvel().subscribe(
       comicData => {
         this.comicData=comicData;
         console.log('name:' + this.comicData.Name);
@@ -32,7 +32,16 @@ getComicDetails( ComicData:string) :  boolean{
     return false;
   }
  
-
+  // getComicDetails( ComicData:string) :  boolean{
+  //   this._ComicData.GetMovieData(ComicData).subscribe(
+  //     comicData => {
+  //       this.comicData=comicData;
+  //       console.log('name:' + this.comicData.Name);
+  //     },
+  //     error => this.errorMessage =<any>error
+  //   );
+  //   return false;
+  // }
 
 // getComicDetails(comicName:string): void {
     

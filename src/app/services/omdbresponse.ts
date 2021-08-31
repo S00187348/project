@@ -1,8 +1,9 @@
+// import * as internal from "node:stream";
+
 export interface IOMDBResponse{
     [x: string]: any;
     Name:string;
-    Year:string;
-    Price:string;
-    Writor:string;
-    Error:string;
+    Description:string;
+    id:string;
+    
 }
