@@ -1,5 +1,6 @@
 export interface IOMDBResponse{
-    Title:string;
+    [x: string]: any;
+    Name:string;
     Year:string;
     Price:string;
     Writor:string;

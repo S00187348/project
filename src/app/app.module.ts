@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
+import { AppRoutingModule } from './services/app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
-import {MarvelService} from './services/marvel.service';
+
+import { HttpClientModule } from '@angular/common/http';
+import { MarvelService } from './services/marvel.service';
+
 
 @NgModule({
   declarations: [
@@ -11,9 +14,13 @@ import {MarvelService} from './services/marvel.service';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
+    
   ],
-  providers: [],
+  providers: [
+    MarvelService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
