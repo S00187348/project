@@ -10,44 +10,46 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 
 export class MarvelService {
-
-  constructor(public _http: HttpClient) { }
-  // public url = 'https://gateway.marvel.com/'
-  // public _key ='c248a342d826c2b54cd6bbd996bfd235'
+public _url = 'https://gateway.marvel.com/v1/public/comics?'
+  public _key ='4991f6b67c071092dbe67b36faae5681&hash=f0de242ee98d75c3990f9ec4147faf73'
   // private _Key ='b7e44c6ec44f5bc9b3b180c6be8d0cf0bf19ce44'
+  constructor(public _http: HttpClient) { }
+  
 
-  public consultarPersonajesMarvel(): Observable<IOMDBResponse> {
+  GetMovieData(ComicData): Observable<IOMDBResponse>{
+    return this._http.get<IOMDBResponse>(this._url + this._key + ComicData)
+    .pipe(
+      tap(data => console.log('Comicdata/error' + JSON.stringify(data))
+      ),
+      catchError(this.handleError)
+    );
     
-   let url = 'https://gateway.marvel.com/v1/public/comics?ts=1000&apikey=4991f6b67c071092dbe67b36faae5681&hash=f0de242ee98d75c3990f9ec4147faf73';
+
+  // public consultarPersonajesMarvel(): Observable<IOMDBResponse> {
+    
+  //  let url = 'https://gateway.marvel.com/v1/public/comics?ts=1000&apikey=4991f6b67c071092dbe67b36faae5681&hash=f0de242ee98d75c3990f9ec4147faf73';
           
     
-    return this._http.get(url).pipe(
-      map((res: any) => {
-        return res;
-      }),
-      retry(5));
-    };
-    // return this._http.get<IOMDBResponse>(this.url + this._key + ComicData.title)
-    // .pipe(
-    //   tap(data => console.log('Moviedata/error' + JSON.stringify(data))
-    //   ),
-    //   catchError(this.handleError)
-    // );
-    
-    // }
-    // private handleError(err:HttpErrorResponse){
-    //   console.log('MarvelService:' + err.message);
-    //   return Observable.throw(err.message);
+  //   return this._http.get(url).pipe(
+  //     map((res: any) => {
+  //       return res;
+  //     }),
+  //     retry(5));
+  //   };
+   
+  //   public obtenerPersonajesMarvel(url: string) {
 
-    // }
-    public obtenerPersonajesMarvel(url: string) {
-
-      console.log(url);
+  //     console.log(url);
   
-      return this._http.get(url).pipe(
-        map((res: any) => {
-          return res;
-        }),
-        retry(5));
-  }
+  //     return this._http.get(url).pipe(
+  //       map((res: any) => {
+  //         return res;
+  //       }),
+  //       retry(5));
+  //    } 
+    }    
+    private handleError(err:HttpErrorResponse){
+      console.log('OmdbApiService:' + err.message);
+      return Observable.throw(err.message);
+    }
 }

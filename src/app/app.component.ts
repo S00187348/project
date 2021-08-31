@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-//import { Console } from 'node:console';
-//import { runInThisContext } from 'node:vm';
+// import { Console } from 'node:console';
+// import { runInThisContext } from 'node:vm';
 import {MarvelService} from './services/marvel.service';
 import {IOMDBResponse} from './services/omdbresponse';
 @Component({
@@ -11,29 +11,25 @@ import {IOMDBResponse} from './services/omdbresponse';
 })
 
 export class AppComponent {
- public listComicData = [];
-  public offset = '0';
-  public limit = '100';
-  //result;
+//  public listComicData = [];
+//   public offset = '0';
+//   public limit = '100';
+//   public results= {};
   comicData:IOMDBResponse;
   errorMessage:any;
   Title: any;
 
-  constructor(
-    private ComicData: MarvelService
-) {}
+  constructor( private _ComicData: MarvelService ) {}
 
-getComicDetails( comicData:string) : boolean {
-    
-  this.ComicData.consultarPersonajesMarvel().subscribe(
-    ComicData => {
-    this.comicData;
-      
-    },
-    error => this.errorMessage =<any>error
- 
-  );
-   return false;
+getComicDetails( ComicData:string) :  boolean{
+    this._ComicData.GetMovieData(ComicData).subscribe(
+      comicData => {
+        this.comicData=comicData;
+        console.log('name:' + this.comicData.Name);
+      },
+      error => this.errorMessage =<any>error
+    );
+    return false;
   }
  
 
