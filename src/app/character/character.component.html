@@ -1,0 +1,31 @@
+<div class="ion-padding">
+  <div class="container-buttons">
+    <!-- Back button-->
+    <a class="btn-back" (click)="goBack()">&laquo; Back</a>
+  </div>
+
+  <div *ngIf="!character && loading">
+    <div class="container-loading-list">
+      <ion-spinner></ion-spinner>
+    </div>    
+  </div>
+
+  <div *ngIf="!character && !loading">
+    <br />
+    character not found
+  </div>
+  
+  <div *ngIf="character && !loading">
+    <h1>{{ character.name }}</h1>
+
+    <br />
+    <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />        
+    
+    <p>{{ character.description }}</p>
+
+    <!-- /characters/{{ character.id }}/comics/ DOES NOT WORK -->
+    <ion-button expand="block" routerLink="/comics-character-in/{{ character.id }}">View comics</ion-button>
+    <br />
+  </div>     
+  
+</div>

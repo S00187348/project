@@ -1,26 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'; 
 
-import { AppRoutingModule } from './services/app-routing.module';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+
 import { AppComponent } from './app.component';
-
-import { HttpClientModule } from '@angular/common/http';
-import { MarvelService } from './services/marvel.service';
-
+import { AppRoutingModule } from './app-routing.module';
+import { CharactersComponent } from './characters/characters.component';
+import { CharacterComponent } from './character/character.component';
+import { ComicsComponent } from './comics/comics.component';
+import { ComicComponent } from './comic/comic.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CharactersComponent,
+    CharacterComponent,
+    ComicsComponent,
+    ComicComponent
   ],
+  entryComponents: [],
   imports: [
-    BrowserModule,
+    BrowserModule, 
+    IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
-    
+    HttpClientModule
   ],
   providers: [
-    MarvelService
+  
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,52 @@
+<div class="ion-padding">
+  <h1>Characters</h1>
+
+  <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()" debounce=500 (ionChange)="getCharacters(searchInput.value)"></ion-searchbar>
+  <br />
+
+  <div *ngIf="loading">
+    <div class="container-loading-list">
+      <ion-spinner></ion-spinner>
+    </div>  
+  </div>
+
+  <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
+    no characters found
+  </div>
+
+  <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">
+    <ion-list>
+      <ion-item *ngFor="let character of marvelData.data.results" detail="false" routerLink="/character/{{ character.id }}">
+        <ion-avatar slot="start">
+          <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label text-wrap>{{ character.name }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Page buttons -->
+    <ion-toolbar>
+      <ion-buttons slot="secondary">
+        <span [class.hide]="pageNumber===1">
+          <ion-button fill="solid" (click)="prevPage(searchInput.value)">
+            <ion-icon slot="start" name="arrow-dropleft-circle"></ion-icon>
+            Prev
+          </ion-button>
+        </span>
+      </ion-buttons>        
+
+      <ion-title>Page {{ pageNumber }} of {{ pagesTotal }}</ion-title>
+      
+      <ion-buttons slot="primary">
+        <span [class.hide]="pageNumber===pagesTotal">
+          <ion-button fill="solid" (click)="nextPage(searchInput.value)">
+            Next
+            <ion-icon slot="end" name="arrow-dropright-circle"></ion-icon>
+          </ion-button>
+        </span>  
+      </ion-buttons>      
+    </ion-toolbar>  
+
+  </div>  
+  
+</div>
